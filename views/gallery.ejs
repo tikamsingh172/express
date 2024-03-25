@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/metas-links.ejs'); %>
+        <title>
+            <%= title %>
+        </title>
+</head>
+</head>
+
+<body>
+    <%- include('../partials/header.ejs'); %>
+
+        <main>
+            <h1 style="text-align: center; margin-top: 10px;">Welcome To Gallery !</h1>
+            <div class="container vh-100 d-flex justify-content-center align-items-center">
+                <% data.map((item)=>{%>
+                    <img src=<%=item.url%> alt="mobile-img">
+                    <%})%>
+            </div>
+        </main>
+        <%- include('../partials/footer.ejs'); %>
+            <%- include('../partials/scripts.ejs'); %>
+</body>
+
+</html>
