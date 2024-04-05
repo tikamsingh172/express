@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const ErrorHandler = require('../errors/ErrorHandler');
 let products = require('../productsData');
 
 router.get('/products', (req, res) => {
@@ -35,15 +36,27 @@ router.put('/products/:productId', (req, res) => {
 });
 
 
-router.post('/products', (req, res) => {
-    const { name, price } = req.body;
+router.post('/products', (req, res, next) => {
 
+    // try {
+    //     console.log(city);
+    // } catch (err) {
+    //     next(ErrorHandler.serverError(err.message));
+    // }
+
+    // throw new Error('This is a other error ...');
+
+    const { name, price } = req.body;
     if (!name || !price) {
-        throw new Error('All fields are required.');
-        return res.status(422).json({
-            success: false,
-            error: 'All fields are required.'
-        });
+
+        next(ErrorHandler.validationError('name and price fields are required!'));
+
+        // throw new Error('All fields are required.');
+
+        // return res.status(422).json({
+        //     success: false,
+        //     error: 'All fields are required.'
+        // });
     }
 
     const product = {
