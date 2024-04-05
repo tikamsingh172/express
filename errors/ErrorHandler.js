@@ -1,7 +1,7 @@
 class ErrorHandler {
-    constructor(status, mgs) {
+    constructor(status, msg) {
         this.status = status;
-        this.message = mgs;
+        this.message = msg;
     }
 
     static validationError(message = 'All fields are required !') {
